@@ -152,4 +152,40 @@ alertaSaludoPadre(evento: string): void {
   }
 ```
 
+# Sesion 3
+Creamos el proyecto evolutivo completo.
+Nosotros ya lo creamos desde la sesion 1 pero los pasos son:
+```
+ng new <proyecto>
+// Nos mostrara si queremos routing y que css preprocesor queremos
+// Añadimos routing con "Yes"
+// Añadimos el css preprocesor de nuestra preferencia
+```
 
+Creamos los componentes a los cuales podremos usar en nuestra app (TaskList, Task, TaskForm):
+```
+ng g c components/<componente>
+```
+
+Creamos los componentes de tipo form para auth en nuestra app:
+```
+ng g c components/auth/<componente form de login>
+ng g c components/auth/<componente form de registro>
+```
+
+Creamos el componentes de tipo navbar en nuestra app:
+```
+ng g c components/nav/<componente navbar>
+```
+
+Creamos los componentes de tipo pagina a los cuales podremos navegar en nuestra app:
+```
+ng g c pages/<componente>
+```
+
+Agregamos angular material:
+```
+ng add @angular/material
+```
+
+# Sesion 4

@@ -1,5 +1,7 @@
 # Componentes
+
 Crear componentes:
+
 ```
 ng g c <nombre del componente>
 ```
@@ -11,15 +13,19 @@ Todos los componentes tendran 4 archivos por defecto: un archivo donde pod4remos
 En resumidas cuentas tiene una vista, una hoja de estilos, un archivo de pruebas y un controlador.
 
 En el controlador podremos declarar lo que la vista muestra mediante atributos de clase a los que la vista tiene acceso. Todas las variables o atributos que declaremos en el controlador podremos mostrarlos en la vista mediante dobles llaves:
+
 ```
 {{ variable }}
 ```
 
 # Modulos
+
 Crear modulos:
+
 ```
 ng g m <nombre del modulo>
 ```
+
 Dentro de los modulos podremos hacer declaraciones, importaciones, exportaciones y agregar providers.
 
 Las declaraciones seran los componentes que podremos usar para ese modulo.
@@ -28,19 +34,30 @@ Las importaciones seran traer todo lo que exporte otro modulo.
 
 Las exportaciones seran todo lo que nosotros exportemos hacia otro modulo que nos importe.
 
+Para crear componentes para un modulo especifico debemos colocar la ruta exacta del modulo:
+
+```
+ng g c modules/<modulo>/<nombre del componente>
+```
+
 # Hooks
+
 Los hooks o metodos del ciclo de vida son metodos que se ejecutan en determinado momento del ciclo de vida de un componente, sea antes de renderizar o al eliminar el componente.
 
 ## OnInit
+
 Este hook ejecuta el codigo dentro de el antes de renderizar el componente.
 
 # I/O
+
 Inputs y Outputs que se utilizan para comunicar datos del padre al hijo y de los hijos al padre.
 
 ## Inputs
+
 Se necesita importar Input de "@angular/core"
 
 El decorador Input se debe usar en el controlador para indicar lo que vamos a recibir desde un componente de orden superior:
+
 ```
 @Input() <nombre del atributo>: <tipo de dato> = <valor por defecto>;
 ```
@@ -48,6 +65,7 @@ El decorador Input se debe usar en el controlador para indicar lo que vamos a re
 El valor por defecto se agrega en caso de que deba tenerlo, para contemplar que no llegue desde el padre.
 
 Para mandar inputs desde el componente padre debemos mandar el dato desde la etiqueta que recibe el input, podemos pasarlo de forma literal o dinamica (binding):
+
 ```
 // Literal
 <nombre-del-componente <nombre del input>="<valor>"></nombre-del-componente>
@@ -61,17 +79,70 @@ En caso de no mandar ningun valor el componente usara en el input el valor por d
 Podemos pasar datos de forma literal
 
 ## Outputs
+
 Se necesita importar Output y EventEmitter de "@angular/core"
 
 En el controlador declaramos el emitter a usar con el decorador Output:
+
 ```
 @Output() <nombre del output>: EventEmitter<tipo de dato> = new EventEmitter<tipo de dato>();
 ```
 
 Utilizamos el metodo ya incluido en la clase EventEmitter llamado emit en el momento en que querramos mandar los datos:
+
 ```
 this.mensajeEmiter.emit(<dato>);
 ```
 
+# Routing
 
+## Router Outlet
 
+# Directivas
+Las directivas nos ayudan a realizar acciones en nuestro HTML siendo ellas renderizados especificos (condicionales o repetitivos) asi como manejar parametros especificos de algunas etiquetas asi como sus clases o estilos.
+
+## ngIf - else
+Con esta directiva condicional podremos mostrar o no un bloque en nuestro HTML:
+
+```
+<p *ngIf="condicion">
+  Bloque a mostrar
+</p>
+```
+
+Si deseamos usar nuestro ngIf con su complemento else seria:
+
+```
+<ng-container *ngIf="condicion; else elseTemplate">
+  <p>
+    Bloque a mostrar
+  </p>
+</ng-container>
+<ng-template #elseTemplate>
+  <p>
+    Bloque else
+  </p>
+</ng-template>
+```
+
+## ngFor
+Para una directiva for la cual iterara una lista de elementos y repetir el contenido debe contener la lista de elementos y el nombre a del elemento a usar en cada iteración, al igual podemos ver si es par o impar (even, odd) asi como el index:
+
+```
+<div *ngFor="let elemento of listaElementos; let i = index; let even = even">
+  <p>Index: {{index}}</p>
+  <p>{{elemento.atributo1}}</p>
+  <p>{{elemento.atributo2}}</p>
+</div>
+```
+
+## ngSwitch
+Para usar el *ngSwitch debemos usar una variable la cual funcionara como el switch:
+```
+<div [ngSwitch]="opcion">
+  <p *ngSwitchCase="1">Opcion 1</p>
+  <p *ngSwitchCase="2">Opcion 2</p>
+  <p *ngSwitchDefault>Valor por defecto si no se obtienen las anteriores opciones</p>
+  ...
+</div>
+```

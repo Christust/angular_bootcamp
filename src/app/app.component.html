@@ -9,9 +9,8 @@
 </div>
 
 <div class="content" role="main">
+  <app-home-page></app-home-page>
   <router-outlet></router-outlet>
-  <input placeholder="Nombre de usuario" type="text" [(ngModel)]="usuario" />
-  <app-saludo (mensajeEmiter)="alertaSaludo($event)" [nombre]="usuario"></app-saludo>
 </div>
 
 <style>

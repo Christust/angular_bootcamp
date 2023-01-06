@@ -47,4 +47,16 @@ imports: [
 ...
 ```
 
-Dentro de app creamos las carpetas de nuestro proyecto para tener mejor orden: components, services, modules, models, guards y pages.
+Dentro de app creamos las carpetas de nuestro proyecto para tener mejor orden: components, pipes, services, modules, models, guards y pages.
+
+Agregamos angular material:
+```
+ng add @angular/material
+```
+
+Creamos el modulo personalizado para material:
+```
+ng g m modules/Material
+```
+
+Importamos el modulo Materail en app.module.ts.

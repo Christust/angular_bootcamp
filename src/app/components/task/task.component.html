@@ -1,0 +1,5 @@
+<h5>Titulo: {{ task?.title }}</h5>
+<h6>Descripción: {{ task?.description }}</h6>
+<p>Estado: {{ task?.completed ? "Completada" : "Incompleta" }}</p>
+<p>Nivel: {{ task?.level }}</p>
+<button (click)="deleteTask()">Eliminar tarea</button>
