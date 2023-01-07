@@ -60,3 +60,22 @@ ng g m modules/Material
 ```
 
 Importamos el modulo Materail en app.module.ts.
+
+Importamos el modulo HttpClientModulo para poder hacer peticiones http en nuestro proyecto:
+```
+// app.module.ts
+...
+
+import { HttpClientModule } from '@angular/common/http';
+
+...
+
+imports: [
+  ...
+
+  // Importamos el modulo http para las peticiones
+  HttpClientModule,
+
+  ...
+],
+```

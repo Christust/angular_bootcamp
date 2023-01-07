@@ -146,3 +146,162 @@ Para usar el *ngSwitch debemos usar una variable la cual funcionara como el swit
   ...
 </div>
 ```
+
+# Servicios
+Los servicios son clases las cuales ofrecen metodos que nuestros componentes pueden tener acceso para poder consumir informacion o realizar acciones que se repiten en la aplicación. Asi no repetir codigo.
+
+Para crear un servicio usamos:
+```
+ng g s services/<nombre del servicio>
+```
+
+Esto añadira el archivo service y el archivo de pruebas. El archivo de servicio se ve asi:
+```
+import { Injectable } from '@angular/core';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class ContactoService {
+
+  constructor() { }
+}
+```
+
+## Promesas
+Las promesas esperan en algun momento cambiar de estado una vez hacen la peticion, podemos crear dentro de nuestro servicio una funcion de tipo promesa de la siguiente forma:
+```
+obtenerContactos(): Promise<IContact[]> {
+  return Promise.resolve(CONTACTS);
+}
+```
+
+En este caso de prueba CONTACTS es una constante la cual es una lista de objetos.
+
+Para usar nuestro servicio ahora en el componente debemos hacer:
+```
+ngOnInit(): void {
+  // Obtener la lista de contactos:
+  this.contactService
+    .obtenerContactos()
+    .then((lista: IContact[]) => (this.contactList = lista))
+    .catch((error) => console.log(`Hubo un error: ${error}`))
+    .finally(() => console.log('Peticion terminada'));
+}
+```
+
+## Observables
+Para usar observables debemos importar en nuestro servicio la herramienta Observable de rxjs:
+```
+import { Observable } from 'rxjs';
+```
+
+Normalmente las peticiones http en angular seran manejadas por observables que pueden estar suscritos a los mismos hasta estar resueltos.
+
+Desde el servicio podremos crearlo de la siguiente manera:
+```
+obtenerContactoPorId(id: number): Observable<IContact> | undefined {
+  const contact = CONTACTS.find((contact: IContact) => contact.id === id);
+
+  // Creamos el obserbable
+  let observable: Observable<IContact> = new Observable((observer) => {
+    observer.next(contact); // Emitimos un valor a todo componente suscrito
+    observer.complete(); // No emitimos mas valores
+  });
+  if (contact) {
+    return observable;
+  }
+  return;
+}
+```
+
+Y para consumirlo desde el componente usamos:
+```
+obtenerContacto(id: number) {
+  this.subscription = this.contactService
+    .obtenerContactoPorId(id)
+    ?.subscribe((contacto: IContact) => (this.selectedContact = contacto));
+  console.log(this.selectedContact);
+}
+```
+
+Es importante desuscribirnos de nuestros observables al eliminar el componente usando ngOnDestroy:
+```
+subscription: Subscription | undefined;
+
+...
+
+obtenerContacto(id: number) {
+  this.subscription = this.contactService
+    .obtenerContactoPorId(id)
+    ?.subscribe({
+      next: (contact: IContact) => (this.selectedContact = contact),
+    });
+  console.log(this.selectedContact);
+}
+
+...
+
+ngOnDestroy(): void {
+  this.subscription?.unsubscribe();
+}
+
+...
+```
+
+# Http
+El modulo HttpClientModule nos ayuda a realizar peticiones http y poder usarlas dentro de nuestros servicios, para ello necesitamos importarlo.
+
+Importamos el modulo httpclient:
+```
+// app.module.ts
+...
+
+import { HttpClientModule } from '@angular/common/http';
+
+...
+
+imports: [
+  ...
+
+  // Importamos el modulo http para las peticiones
+  HttpClientModule,
+
+  ...
+],
+```
+
+Ahora podemos usarlo en nuestros servicios inyectandolo en sus constructores:
+```
+constructor(private http: HttpClient) { }
+
+login(email: string, password: string): Observable<any> {
+  let body = {
+    email: email,
+    password: password,
+  };
+  // Devolvemos la respuesta del observable cuando la peticion
+  // http se ah completado.
+  return this.http.post('https://reqres.in/api/login', body);
+}
+```
+
+Al consumirlo lo podemos hacer como a un observable:
+```
+suscription: Subscription | undefined;
+  constructor(private loginService: AuthService) {}
+
+  ngOnInit(): void {
+    this.suscription = this.loginService
+      .login('eve.holt@reqres.in', 'cityslicka')
+      .subscribe({
+        next: (res) => console.log(res),
+        error: (e) => console.log(e),
+        complete: () => console.log('terminado'),
+      });
+  }
+
+  ngOnDestroy(): void {
+    this.suscription?.unsubscribe();
+  }
+```

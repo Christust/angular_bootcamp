@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -17,6 +18,7 @@ import { NotFoundPageComponent } from './pages/not-found-page/not-found-page.com
 import { FootBarComponent } from './components/nav/foot-bar/foot-bar.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ListsModule } from './modules/lists/lists.module';
+import { ListaContactosComponent } from './components/lista-contactos/lista-contactos.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +34,7 @@ import { ListsModule } from './modules/lists/lists.module';
     LoginPageComponent,
     NotFoundPageComponent,
     FootBarComponent,
+    ListaContactosComponent,
   ],
   imports: [
     BrowserModule,
@@ -41,6 +44,8 @@ import { ListsModule } from './modules/lists/lists.module';
     BrowserAnimationsModule,
     // Importamos nuestro modulo personalizado ListsModule
     ListsModule,
+    // Importamos el modulo http para las peticiones
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

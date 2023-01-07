@@ -1,0 +1,4 @@
+<p>lista-contactos works!</p>
+<div *ngFor="let contact of contactList">
+  <h3 (click)="obtenerContacto(contact.id)">{{ contact.name }}</h3>
+</div>
