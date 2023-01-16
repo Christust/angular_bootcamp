@@ -1,15 +1,23 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login-page',
   templateUrl: './login-page.component.html',
-  styleUrls: ['./login-page.component.scss']
+  styleUrls: ['./login-page.component.scss'],
 })
 export class LoginPageComponent implements OnInit {
-
-  constructor() { }
+  constructor(private router: Router) {}
 
   ngOnInit(): void {
+    let token = sessionStorage.getItem('token');
+    if (token) {
+      this.router.navigate(['home']);
+    }
   }
 
+  loginUser() {
+    sessionStorage.setItem('token', '12344567');
+    this.router.navigate(['home']);
+  }
 }

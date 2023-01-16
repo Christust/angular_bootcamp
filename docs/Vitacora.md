@@ -224,4 +224,81 @@ constructor(private contactService: ContactoService) {}
 ```
 
 
+# Sesion 6
+Aplicaremos y entenderemos el routing de angular junto con los guards para proteger rutas y subrutas.
+
+En el modulo de enrutado se cargan todas las rutas en la constante routes.
+
+Para las rutas debemos ir creando los componentes a los cuales podremos navegar.
+
+La etiqueta router-outlet se encargara de renderizar el componente que corresponde en la ruta en cuestion.
+
+Para empezar debemos declarar las rutas a las que navegaremos.
+
+```
+...
+
+const routes: Routes = [
+  {
+    path: '',
+    pathMatch: 'full',
+    redirectTo: 'home',
+  },
+  {
+    path: 'home',
+    component: HomePageComponent,
+  },
+  ...
+
+  {
+    path: 'contact/:id',
+    component: ContactDetailPageComponent,
+  },
+  ...
+
+  {
+    path: '**',
+    component: NotFoundPageComponent,
+  },
+];
+```
+
+Con esto hemos declarado rutas redirijen a otras rutas, rutas normales, rutas que pueden recibir parametros por url y una ruta que cargara un componente en dado caso que no encuentre ninguna ruta que haga match con las anteriores existentes.
+
+En dado caso que querramos darle hijos a una ruta debemos agregar children con una array de objetos con la misma estructura que routes y en dicho componente agregar el router-outlet para poder renderizar al hijo dentro del padre.
+
+Para poder navegar entre rutas debemos usar la propiedad routerLink en nuestro html colocando la ruta a la que queremos navegar.
+
+```
+<a routerLink="/login">Navegar a login</a>
+```
+
+Debe tener el diagonal ya que si no lo tiene sobrepondra la ruta a navegar encima de la ruta en la que estamos.
+
+Si queremos recibir desde la ruta al componente esos parametros enviador podemos utilizar ActivatedRoute:
+```
+import { ActivatedRoute } from '@angular/router';
+
+...
+
+constructor(private route: ActivatedRoute) {}
+
+...
+
+ngOnInit(): void {
+    // Vamos a leer los parametros:
+    this.route.params.subscribe((params: any) => {
+      if (params.id) {
+        this.id = params.id;
+      }
+    });
+  }
+
+...
+```
+
+Generaremos un guard:
+```
+ng g g guards/auth
+```
 

@@ -19,6 +19,8 @@ import { FootBarComponent } from './components/nav/foot-bar/foot-bar.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ListsModule } from './modules/lists/lists.module';
 import { ListaContactosComponent } from './components/lista-contactos/lista-contactos.component';
+import { ContactsPageComponent } from './pages/contacts-page/contacts-page.component';
+import { ContactDetailPageComponent } from './pages/contact-detail-page/contact-detail-page.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +37,8 @@ import { ListaContactosComponent } from './components/lista-contactos/lista-cont
     NotFoundPageComponent,
     FootBarComponent,
     ListaContactosComponent,
+    ContactsPageComponent,
+    ContactDetailPageComponent,
   ],
   imports: [
     BrowserModule,
