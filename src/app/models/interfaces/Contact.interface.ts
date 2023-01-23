@@ -1,7 +1,8 @@
 export interface IContact {
-  id: number,
+  id: number;
   name: string;
   last_name: string;
   email: string;
   age: number;
+  sex: string;
 }

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { NavigationExtras, Router } from '@angular/router';
+import { IContact } from 'src/app/models/interfaces/Contact.interface';
 
 @Component({
   selector: 'app-home-page',
@@ -7,9 +8,16 @@ import { Router } from '@angular/router';
   styleUrls: ['./home-page.component.scss'],
 })
 export class HomePageComponent implements OnInit {
-  constructor(private router: Router) {}
+  selectedContact: IContact | undefined;
+  token: string | null = null;
 
-  ngOnInit(): void {}
+  constructor(private router: Router) {}
+  ngOnInit(): void {
+    this.token = sessionStorage.getItem('token');
+    if (history.state.data) {
+      this.selectedContact = history.state.data;
+    }
+  }
 
   navegarAContacts() {
     this.router.navigate(['contacts']);

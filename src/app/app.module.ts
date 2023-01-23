@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 
@@ -21,6 +21,11 @@ import { ListsModule } from './modules/lists/lists.module';
 import { ListaContactosComponent } from './components/lista-contactos/lista-contactos.component';
 import { ContactsPageComponent } from './pages/contacts-page/contacts-page.component';
 import { ContactDetailPageComponent } from './pages/contact-detail-page/contact-detail-page.component';
+import { BasicoComponent } from './components/forms/basico/basico.component';
+import { AnidadoComponent } from './components/forms/anidado/anidado.component';
+import { ArregloComponent } from './components/forms/arreglo/arreglo.component';
+import { ValidadoComponent } from './components/forms/validado/validado.component';
+import { MaterialModule } from './modules/material/material.module';
 
 @NgModule({
   declarations: [
@@ -39,6 +44,10 @@ import { ContactDetailPageComponent } from './pages/contact-detail-page/contact-
     ListaContactosComponent,
     ContactsPageComponent,
     ContactDetailPageComponent,
+    BasicoComponent,
+    AnidadoComponent,
+    ArregloComponent,
+    ValidadoComponent,
   ],
   imports: [
     BrowserModule,
@@ -50,6 +59,10 @@ import { ContactDetailPageComponent } from './pages/contact-detail-page/contact-
     ListsModule,
     // Importamos el modulo http para las peticiones
     HttpClientModule,
+    // Modulo para formularios reactivos
+    ReactiveFormsModule,
+    // Importamos nuestro modulo de material
+    MaterialModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

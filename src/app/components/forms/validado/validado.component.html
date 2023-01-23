@@ -1,0 +1,26 @@
+<form [formGroup]="validatedForm" (submit)="submitForm()">
+  <h3>Datos del form</h3>
+  <p>{{ validatedForm.value | json }}</p>
+  <input type="text" placeholder="Nombre" formControlName="name" />
+  <div *ngIf="nameForm?.errors?.['required'] && nameForm?.touched">
+    <p style="color: red">El campo nombre es obligatorio</p>
+  </div>
+  <input type="text" placeholder="Apellidos" formControlName="last_name" />
+  <input type="text" placeholder="Edad" formControlName="age" />
+  <div *ngIf="ageForm?.errors?.['required'] && ageForm?.touched">
+    <p style="color: red">El campo nombre es obligatorio</p>
+  </div>
+  <input type="text" placeholder="Email" formControlName="email" />
+  <div *ngIf="emailForm?.errors?.['required'] && emailForm?.touched">
+    <p style="color: red">El campo nombre es obligatorio</p>
+  </div>
+  <input type="password" placeholder="Contraseña" formControlName="password" />
+  <div *ngIf="passwordForm?.errors?.['required'] && passwordForm?.touched">
+    <p style="color: red">El campo nombre es obligatorio</p>
+  </div>
+  <input type="checkbox" value="Acepto" formControlName="accept" />
+  <div *ngIf="acceptForm?.errors?.['required'] && acceptForm?.touched">
+    <p style="color: red">El campo nombre es obligatorio</p>
+  </div>
+  <button [disabled]="validatedForm.invalid" type="submit">Enviar form</button>
+</form>

@@ -1,4 +1,10 @@
 <h1>Home page</h1>
 <h3>Bienvenido</h3>
-<a routerLink="/login">Navegar a login</a>
+
+<h2 *ngIf="selectedContact">
+  Contacto seleccionado: {{ selectedContact.name }}
+</h2>
+<a *ngIf="!token" routerLink="/login">Navegar a login</a>
 <button (click)="navegarAContacts()">Ver tus contactos</button>
+<a routerLink="/contacts" [queryParams]="{ filter: 'men' }">Amigos</a>
+<a routerLink="/contacts" [queryParams]="{ filter: 'women' }">Amigas</a>

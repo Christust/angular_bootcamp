@@ -1,7 +1,8 @@
 <p>Tus contactos</p>
 <!-- Listar los contactor y poder navegar al pinchar en uno de ellos -->
 <div *ngFor="let contacto of contactList; let i = index">
-  <div routerLink="{{ contacto.id }}">
-    <h6>{{ contacto.name }}</h6>
+  <div routerLink="{{ contacto.id }}" [state]="{ data: contacto }">
+    <span class="fs-5" style="cursor: pointer">{{ contacto.name }}</span>
   </div>
+  <button (click)="pasarContacto(contacto)">Seleccionar amigo invicible</button>
 </div>

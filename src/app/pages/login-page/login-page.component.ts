@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-login-page',
@@ -7,7 +8,10 @@ import { Router } from '@angular/router';
   styleUrls: ['./login-page.component.scss'],
 })
 export class LoginPageComponent implements OnInit {
-  constructor(private router: Router) {}
+  user: string = '';
+  password: string = '';
+
+  constructor(private router: Router, private authService: AuthService) {}
 
   ngOnInit(): void {
     let token = sessionStorage.getItem('token');
@@ -17,7 +21,15 @@ export class LoginPageComponent implements OnInit {
   }
 
   loginUser() {
-    sessionStorage.setItem('token', '12344567');
-    this.router.navigate(['home']);
+    this.authService.login(this.user, this.password).subscribe({
+      next: (res) => {
+        sessionStorage.setItem('token', res.token);
+        this.router.navigate(['home']);
+      },
+      error: (error) => {
+        console.log(error);
+      },
+      complete: () => console.log('login complete'),
+    });
   }
 }

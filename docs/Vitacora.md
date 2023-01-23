@@ -302,3 +302,11 @@ Generaremos un guard:
 ng g g guards/auth
 ```
 
+Los guards deben retornar true para que la ruta que protegen pueda ser utilizada, en caso de devolver false el routing no nos permitira ingresar a la ruta.
+
+# Sesion 7
+Aplicamos el routing para poder navegar tanto de forma programatica como utilizando routeLink en nuestras anclas en html, utilizamos NavigationExtras para pasar datos entre nuestras rutas y conectamos el servicio de auth para poder hacer un login a reqres.in
+
+# Sesion 8
+Importamos el ReactiveFormsModule para utilizar formularios reactivos y poder validarlos.
+

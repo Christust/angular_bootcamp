@@ -9,10 +9,21 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class ContactoService {
+  contactList: IContact[] = CONTACTS;
   constructor() {}
 
-  obtenerContactos(): Promise<IContact[]> {
-    return Promise.resolve(CONTACTS);
+  obtenerContactos(sex?: string): Promise<IContact[]> {
+    if (sex == 'men' || sex == 'women') {
+      let contactListFiltered: IContact[] = this.contactList.filter(
+        (contact) => {
+          return contact.sex == sex;
+        }
+      );
+      return Promise.resolve(contactListFiltered);
+    } else if (sex == 'all') {
+      return Promise.resolve(this.contactList);
+    }
+    return Promise.reject('Filtro no valido');
   }
 
   obtenerContactoPorId(id: number): Observable<IContact> | undefined {
