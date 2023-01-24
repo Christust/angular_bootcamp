@@ -26,6 +26,14 @@ import { AnidadoComponent } from './components/forms/anidado/anidado.component';
 import { ArregloComponent } from './components/forms/arreglo/arreglo.component';
 import { ValidadoComponent } from './components/forms/validado/validado.component';
 import { MaterialModule } from './modules/material/material.module';
+import { EjemploPipesComponent } from './components/ejemplo-pipes/ejemplo-pipes.component';
+
+// Locale para pipes
+import { LOCALE_ID } from '@angular/core';
+import { registerLocaleData } from '@angular/common';
+import localeES from '@angular/common/locales/es';
+
+registerLocaleData(localeES);
 
 @NgModule({
   declarations: [
@@ -48,6 +56,7 @@ import { MaterialModule } from './modules/material/material.module';
     AnidadoComponent,
     ArregloComponent,
     ValidadoComponent,
+    EjemploPipesComponent,
   ],
   imports: [
     BrowserModule,
@@ -64,7 +73,10 @@ import { MaterialModule } from './modules/material/material.module';
     // Importamos nuestro modulo de material
     MaterialModule,
   ],
-  providers: [],
+  providers: [
+    // Registramos el locale ES
+    { provide: LOCALE_ID, useValue: 'es' },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

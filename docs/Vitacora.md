@@ -310,3 +310,26 @@ Aplicamos el routing para poder navegar tanto de forma programatica como utiliza
 # Sesion 8
 Importamos el ReactiveFormsModule para utilizar formularios reactivos y poder validarlos.
 
+# Sesion 9
+Veremos los pipes de angular para personalizar nuestros datos en la vista.
+
+Agregaremos el locale de donde nos encontramos:
+```
+// app.module.ts
+...
+
+import { LOCALE_ID } from '@angular/core';
+import { registerLocaleData } from '@angular/common';
+import localeES from '@angular/common/locales/es';
+
+registerLocaleData(localeES);
+
+...
+
+providers: [
+    // Registramos el locale ES
+    { provide: LOCALE_ID, useValue: 'es' },
+  ],
+
+...
+```
