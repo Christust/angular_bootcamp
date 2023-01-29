@@ -27,6 +27,7 @@ import { ArregloComponent } from './components/forms/arreglo/arreglo.component';
 import { ValidadoComponent } from './components/forms/validado/validado.component';
 import { MaterialModule } from './modules/material/material.module';
 import { EjemploPipesComponent } from './components/ejemplo-pipes/ejemplo-pipes.component';
+import { MatCardModule } from '@angular/material/card';
 
 // Locale para pipes
 import { LOCALE_ID } from '@angular/core';
@@ -72,6 +73,7 @@ registerLocaleData(localeES);
     ReactiveFormsModule,
     // Importamos nuestro modulo de material
     MaterialModule,
+    MatCardModule,
   ],
   providers: [
     // Registramos el locale ES

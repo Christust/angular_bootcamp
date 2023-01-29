@@ -1,34 +1,34 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Subscription } from 'rxjs';
-import { AuthService } from 'src/app/services/auth.service';
-
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 @Component({
   selector: 'app-login-form',
   templateUrl: './login-form.component.html',
   styleUrls: ['./login-form.component.scss'],
 })
-export class LoginFormComponent implements OnInit, OnDestroy {
-  suscription: Subscription | undefined;
-  constructor(private loginService: AuthService) {}
+export class LoginFormComponent implements OnInit {
+  loginForm: FormGroup = new FormGroup({});
+  @Output() loginAction: EventEmitter<{}> = new EventEmitter<{}>();
+  constructor(private formBuilder: FormBuilder) {}
 
   ngOnInit(): void {
-    this.suscription = this.loginService
-      .login('eve.holt@reqres.in', 'cityslicka')
-      .subscribe({
-        next(res) {
-          console.log(res);
-          localStorage.setItem('token', res.token);
-        },
-        error(err) {
-          console.error(err);
-        },
-        complete() {
-          console.log('terminado');
-        },
-      });
+    this.loginForm = this.formBuilder.group({
+      email: ['', Validators.compose([Validators.required, Validators.email])],
+      password: ['', Validators.required],
+    });
   }
 
-  ngOnDestroy(): void {
-    this.suscription?.unsubscribe();
+  get email() {
+    return this.loginForm.get('email');
+  }
+
+  get password() {
+    return this.loginForm.get('password');
+  }
+
+  submitLogin() {
+    if (this.loginForm.valid) {
+      this.loginAction.emit(this.loginForm.value);
+      this.loginForm.reset();
+    }
   }
 }

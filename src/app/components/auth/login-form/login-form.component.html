@@ -1,1 +1,47 @@
-<p>login-form works!</p>
+<!-- Montamos el login form con material -->
+<mat-card>
+  <!-- Cabecera -->
+  <mat-card-header>
+    <mat-card-title> Login </mat-card-title>
+    <mat-card-subtitle> Accede a tu cuenta </mat-card-subtitle>
+  </mat-card-header>
+  <!-- Contenido -->
+  <mat-card-content>
+    <form [formGroup]="loginForm" (submit)="submitLogin()">
+      <mat-form-field>
+        <input
+          matInput
+          placeholder="Email"
+          formControlName="email"
+          type="text"
+        />
+        <mat-error *ngIf="email?.errors?.['required'] && email?.touched">
+          El campo email es obligatorio
+        </mat-error>
+        <mat-error *ngIf="email?.errors?.['email'] && email?.touched">
+          El campo email debe ser un email valido
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <input
+          matInput
+          placeholder="Password"
+          formControlName="password"
+          type="password"
+        />
+        <mat-error *ngIf="password?.errors?.['required'] && password?.touched">
+          El campo password es obligatorio
+        </mat-error>
+      </mat-form-field>
+      <!-- Boton para submit -->
+      <button
+        type="submit"
+        mat-raised-button
+        color="primary"
+        [disabled]="loginForm.invalid"
+      >
+        Enviar
+      </button>
+    </form>
+  </mat-card-content>
+</mat-card>
