@@ -33,6 +33,8 @@ import { MatCardModule } from '@angular/material/card';
 import { LOCALE_ID } from '@angular/core';
 import { registerLocaleData } from '@angular/common';
 import localeES from '@angular/common/locales/es';
+import { RandomUserComponent } from './components/random-user/random-user.component';
+import { RandomContactPageComponent } from './pages/random-contact-page/random-contact-page.component';
 
 registerLocaleData(localeES);
 
@@ -58,6 +60,8 @@ registerLocaleData(localeES);
     ArregloComponent,
     ValidadoComponent,
     EjemploPipesComponent,
+    RandomUserComponent,
+    RandomContactPageComponent,
   ],
   imports: [
     BrowserModule,

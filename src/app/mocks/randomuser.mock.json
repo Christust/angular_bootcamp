@@ -1,0 +1,66 @@
+{
+  "results": [
+    {
+      "gender": "male",
+      "name": {
+        "title": "Mr",
+        "first": "Daniel",
+        "last": "Roy"
+      },
+      "location": {
+        "street": {
+          "number": 7328,
+          "name": "Wellington St"
+        },
+        "city": "Lloydminster",
+        "state": "Alberta",
+        "country": "Canada",
+        "postcode": "A5O 8E8",
+        "coordinates": {
+          "latitude": "-71.9550",
+          "longitude": "-5.6207"
+        },
+        "timezone": {
+          "offset": "-6:00",
+          "description": "Central Time (US & Canada), Mexico City"
+        }
+      },
+      "email": "daniel.roy@example.com",
+      "login": {
+        "uuid": "3c3bf805-64ec-4dd3-a51d-d52aad637bef",
+        "username": "bigswan843",
+        "password": "ellie",
+        "salt": "yr4Y1ZnN",
+        "md5": "3a46639835859fc065d110ea103740d9",
+        "sha1": "2d09864a58d99492faf73541cf2b86084c906325",
+        "sha256": "4d81902abc969a02e612b8dec8ad63aa287b3a721937d4c7ae6a9872de3af38e"
+      },
+      "dob": {
+        "date": "1962-08-15T20:56:44.353Z",
+        "age": 60
+      },
+      "registered": {
+        "date": "2005-06-06T21:17:51.453Z",
+        "age": 17
+      },
+      "phone": "R84 E47-9997",
+      "cell": "S04 W76-8718",
+      "id": {
+        "name": "SIN",
+        "value": "452783095"
+      },
+      "picture": {
+        "large": "https://randomuser.me/api/portraits/men/63.jpg",
+        "medium": "https://randomuser.me/api/portraits/med/men/63.jpg",
+        "thumbnail": "https://randomuser.me/api/portraits/thumb/men/63.jpg"
+      },
+      "nat": "CA"
+    }
+  ],
+  "info": {
+    "seed": "349d1bb93f051329",
+    "results": 1,
+    "page": 1,
+    "version": "1.4"
+  }
+}
