@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NavigationExtras, Router } from '@angular/router';
 import { IContact } from 'src/app/models/interfaces/Contact.interface';
+import { IRandomContact } from 'src/app/models/interfaces/RandomUser.interface';
 
 @Component({
   selector: 'app-home-page',
@@ -8,7 +9,7 @@ import { IContact } from 'src/app/models/interfaces/Contact.interface';
   styleUrls: ['./home-page.component.scss'],
 })
 export class HomePageComponent implements OnInit {
-  selectedContact: IContact | undefined;
+  selectedContact: IRandomContact | undefined;
   token: string | null = null;
 
   constructor(private router: Router) {}

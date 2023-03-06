@@ -1,6 +1,6 @@
 <ng-container *ngIf="contact; else elseTemplate">
-  <h1>Contacto: {{ contact.id }}</h1>
-  <h2>Nombre: {{ contact.name }}</h2>
+  <h1>Contacto: {{ contact.id.name }}</h1>
+  <h2>Nombre: {{ contact.name.first }}</h2>
   <h2>Email: {{ contact.email }}</h2>
 </ng-container>
 <ng-template #elseTemplate>

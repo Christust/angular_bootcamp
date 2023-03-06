@@ -34,10 +34,10 @@ export class RandomUserService {
       .pipe(catchError(this.handleError), retry(0));
   }
 
-  obtenerRandomcontacts(n: number): Observable<Results[]> {
+  obtenerRandomcontacts(n: number): Observable<Results> {
     const opciones: HttpParams = new HttpParams().set('results', n);
     return this.http
-      .get<Results[]>('https://randomuser.me/api', { params: opciones })
+      .get<Results>('https://randomuser.me/api', { params: opciones })
       .pipe(catchError(this.handleError), retry(0));
   }
   obtenerRandomcontactsPorGenero(sexo: string): Observable<Results> {

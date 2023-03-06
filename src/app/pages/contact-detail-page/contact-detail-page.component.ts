@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { IContact } from 'src/app/models/interfaces/Contact.interface';
+import { IRandomContact } from 'src/app/models/interfaces/RandomUser.interface';
 
 @Component({
   selector: 'app-contact-detail-page',
@@ -9,7 +10,7 @@ import { IContact } from 'src/app/models/interfaces/Contact.interface';
 })
 export class ContactDetailPageComponent implements OnInit {
   id: any | undefined;
-  contact: IContact | undefined;
+  contact: IRandomContact | undefined;
   constructor(private route: ActivatedRoute) {}
 
   ngOnInit(): void {

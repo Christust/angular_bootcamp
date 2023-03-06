@@ -1,8 +1,19 @@
 <p>Tus contactos</p>
 <!-- Listar los contactor y poder navegar al pinchar en uno de ellos -->
-<div *ngFor="let contacto of contactList; let i = index">
-  <div routerLink="{{ contacto.id }}" [state]="{ data: contacto }">
-    <span class="fs-5" style="cursor: pointer">{{ contacto.name }}</span>
+<div *ngFor="let contacto of listaRandomContacts; let i = index">
+  <div
+    routerLink="{{ contacto.id.name }}"
+    [state]="{ data: contacto, filtro: filter }"
+  >
+    <span class="fs-5" style="cursor: pointer"
+      >{{ contacto.name.first }} {{ contacto.name.last }}</span
+    >
   </div>
   <button (click)="pasarContacto(contacto)">Seleccionar amigo invicible</button>
 </div>
+<ng-container *ngIf="filter == 'female' || filter == 'male'; else completo">
+  <p>Mostrando lista filtrada por "{{ filter }}"</p>
+</ng-container>
+<ng-template #completo>
+  <p>Mostrando lista de contactos completa</p>
+</ng-template>

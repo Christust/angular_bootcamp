@@ -1,7 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
 import { IContact } from 'src/app/models/interfaces/Contact.interface';
-import { ContactoService } from 'src/app/services/contacto.service';
+import {
+  IRandomContact,
+  Results,
+} from 'src/app/models/interfaces/RandomUser.interface';
+import { RandomUserService } from 'src/app/services/random-user.service';
 
 @Component({
   selector: 'app-contacts-page',
@@ -10,11 +14,12 @@ import { ContactoService } from 'src/app/services/contacto.service';
 })
 export class ContactsPageComponent implements OnInit {
   filter: string = 'all';
-  contactList: IContact[] = [];
+  listaRandomContacts: IRandomContact[] = [];
+
   constructor(
     private router: Router,
     private route: ActivatedRoute,
-    private contactService: ContactoService
+    private randomUserService: RandomUserService
   ) {}
 
   // Ejemplo de paso de info  por medio del esado
@@ -23,18 +28,21 @@ export class ContactsPageComponent implements OnInit {
       if (params.filter) {
         this.filter = params.filter;
       }
-      this.contactService
-        .obtenerContactos(this.filter)
-        .then((res) => {
-          this.contactList = res;
-        })
-        .catch((error) => {
-          console.log(error);
-        });
+      this.randomUserService.obtenerRandomcontacts(10).subscribe({
+        next: (response: Results) => {
+          response.results.forEach((randomContact: IRandomContact, index) => {
+            this.listaRandomContacts.push(randomContact);
+          });
+          console.log(this.listaRandomContacts);
+        },
+        error: (error) => {
+          console.error(`${error}`);
+        },
+      });
     });
   }
 
-  pasarContacto(contact: IContact) {
+  pasarContacto(contact: IRandomContact) {
     let nagivationExtras: NavigationExtras = {
       state: {
         data: contact,
